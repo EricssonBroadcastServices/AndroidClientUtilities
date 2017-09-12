@@ -1,5 +1,4 @@
-[![Release](https://jitpack.io/v/EricssonBroadcastServices/AndroidClientUtilities.svg)]
-(https://jitpack.io/#EricssonBroadcastServices/AndroidClientUtilities)
+[![Release](https://jitpack.io/v/EricssonBroadcastServices/AndroidClientUtilities.svg)](https://jitpack.io/#EricssonBroadcastServices/AndroidClientUtilities)
 
 # Exposure
 
@@ -7,7 +6,7 @@
 * [License](https://github.com/EricssonBroadcastServices/AndroidClientUtilities/blob/master/LICENSE)
 * [Requirements](#requirements)
 * [Installation](#installation)
-* [Usage](#usage)
+* [Documentation](https://jitpack.io/com/github/EricssonBroadcastServices/AndroidClientUtilities/master-SNAPSHOT/javadoc/)
 * [Release Notes](#release-notes)
 * [Upgrade Guides](#upgrade-guides)
 
@@ -42,9 +41,6 @@ dependencies {
 ```
 
 Note: do not add the jitpack.io repository under *buildscript {}*
-
-## Usage
-
 
 ## Release Notes
 Release specific changes can be found in the [CHANGELOG](https://github.com/EricssonBroadcastServices/AndroidClientUtilities/blob/master/CHANGELOG.md).
