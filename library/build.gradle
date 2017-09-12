@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 group='com.github.EricssonBroadcastServices'
-project.archivesBaseName='utilities'
+project.archivesBaseName='AndroidClientUtilities'
 
 android {
     compileSdkVersion 26
@@ -10,7 +10,6 @@ android {
     defaultConfig {
         minSdkVersion 19
         targetSdkVersion 26
-        versionCode buildVersionCode()
         versionName version
         consumerProguardFiles 'proguard-rules.pro'
     }
