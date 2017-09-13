@@ -1,4 +1,4 @@
-package com.ebs.android.clientutilities;
+package com.ebs.android.utilities;
 /*
  * Copyright (c) 2017 Ericsson. All Rights Reserved
  *
