@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 group='com.github.EricssonBroadcastServices'
-project.archivesBaseName='AndroidClientUtilities'
+//project.archivesBaseName='AndroidClientUtilities'
 
 android {
     compileSdkVersion 26
