@@ -24,7 +24,7 @@ import java.util.TimeZone;
  */
 public class DateTimeParser {
     private static final TimeZone utc = TimeZone.getTimeZone("UTC");
-    private static final DateFormat iso8601 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+    private static final DateFormat iso8601 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SS'Z'");
 
     /**
      * Converts an <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a>
