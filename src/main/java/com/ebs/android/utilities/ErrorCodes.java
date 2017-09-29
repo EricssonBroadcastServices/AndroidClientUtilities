@@ -7,4 +7,5 @@ package com.ebs.android.utilities;
 public class ErrorCodes {
     public static final int EXO_PLAYER_INTERNAL_ERROR = 1;
     public static final int EXPOSURE_ENTITLEMENT_ERROR = 2;
+    public static final int PLAYBACK_INVALID_EMP_PLAYABLE = 3;
 }
