@@ -1,5 +1,11 @@
 apply plugin: 'com.android.library'
 
+ext {
+    releaseArtifact = 'empplayer-utilities'
+    releaseVersion = 'v2.0.0'
+    releaseDescription = 'The EMP Player library utilities module.'
+}
+
 android {
     compileSdkVersion 26
     buildToolsVersion "26.0.1"
@@ -23,19 +29,33 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
     compile "com.android.support:appcompat-v7:26.0.1"
     compile "com.android.support:design:26.0.1"
     testCompile 'junit:junit:4.12'
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
 }
 
-ext {
-    releaseArtifact = 'fluxplayer-utilities'
-    releaseVersion = 'v2.0.0'
-    releaseDescription = 'The EMP Player library utilities module.'
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
 }
 
+task javadoc(type: Javadoc) {
+    failOnError  false
+    source = android.sourceSets.main.java.sourceFiles
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    classpath += configurations.compile
+}
 
-apply from: '../../javadoc.gradle'
+// build a jar with javadoc
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives sourcesJar
+    archives javadocJar
+}
