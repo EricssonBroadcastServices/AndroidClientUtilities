@@ -13,7 +13,7 @@ public class ContextRegistry {
         context = newContext;
     }
 
-    public Context get() {
+    public static Context get() {
         return context;
     }
 }
