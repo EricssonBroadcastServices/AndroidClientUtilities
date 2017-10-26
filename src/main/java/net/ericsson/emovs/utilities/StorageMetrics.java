@@ -58,12 +58,15 @@ public class StorageMetrics {
         String suffix = null;
 
         if (size >= 1024) {
-            suffix = "KB";
+            suffix = " KB";
             size /= 1024;
             if (size >= 1024) {
-                suffix = "MB";
+                suffix = " MB";
                 size /= 1024;
             }
+        }
+        else {
+            suffix = " B";
         }
 
         StringBuilder resultBuffer = new StringBuilder(Long.toString(size));
