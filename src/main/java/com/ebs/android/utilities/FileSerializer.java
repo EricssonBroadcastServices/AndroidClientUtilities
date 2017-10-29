@@ -1,5 +1,6 @@
 package com.ebs.android.utilities;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -14,6 +15,10 @@ public class FileSerializer {
 
     public static <T> boolean write(T object, String path) {
         try {
+            File f = new File(path);
+            if(f.getParentFile().exists() == false) {
+                f.getParentFile().mkdirs();
+            }
             FileOutputStream fileOut = new FileOutputStream(path);
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             out.writeObject(object);
@@ -36,7 +41,7 @@ public class FileSerializer {
             fileIn.close();
             return object;
         }
-        catch(ClassNotFoundException | IOException e) {
+        catch(Exception e) {
             e.printStackTrace();
         }
         return null;
