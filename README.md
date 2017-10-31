@@ -1,6 +1,4 @@
-[![Release](https://jitpack.io/v/EricssonBroadcastServices/AndroidClientUtilities.svg)](https://jitpack.io/#EricssonBroadcastServices/AndroidClientUtilities)
-
-# Exposure
+# Exposure    [![Release](https://jitpack.io/v/EricssonBroadcastServices/AndroidClientUtilities.svg)](https://jitpack.io/#EricssonBroadcastServices/AndroidClientUtilities)
 
 * [Features](#features)
 * [License](https://github.com/EricssonBroadcastServices/AndroidClientUtilities/blob/master/LICENSE)
