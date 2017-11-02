@@ -25,7 +25,7 @@ public class DateTimeParserTest {
         Calendar calendar = new GregorianCalendar(2017, 1, 23, 12, 35, 40);
         calendar.setTimeZone(TimeZone.getTimeZone("UTC"));
 
-        assertEquals(calendar.getTime(), DateTimeParser.parseUtcDateTime("2017-02-23T12:35:40Z"));
+        assertEquals(calendar.getTime(), DateTimeParser.parseUtcDateTime("2017-02-23T12:35:40.00Z"));
     }
 
     @Test
@@ -33,7 +33,9 @@ public class DateTimeParserTest {
         Calendar calendar = new GregorianCalendar(TimeZone.getTimeZone("UTC"));
         calendar.set(2017, 1, 23, 12, 35, 40);
 
-        assertEquals("2017-02-23T12:35:40Z", DateTimeParser.formatUtcDateTime(calendar.getTime()));
+        String timeToCompare = DateTimeParser.formatUtcDateTime(calendar.getTime());
+        assertTrue(timeToCompare.startsWith("2017-02-23T12:35:40."));
+        assertTrue(timeToCompare.endsWith("Z"));
     }
 
 }
