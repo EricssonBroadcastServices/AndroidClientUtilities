@@ -1,6 +1,4 @@
-package com.ebs.android.utilities;
-
-import net.ericsson.emovs.utilities.Logging;
+package net.ericsson.emovs.utilities;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;

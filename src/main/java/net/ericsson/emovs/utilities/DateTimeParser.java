@@ -1,4 +1,4 @@
-package com.ebs.android.utilities;
+package net.ericsson.emovs.utilities;
 /*
  * Copyright (c) 2017 Ericsson. All Rights Reserved
  *

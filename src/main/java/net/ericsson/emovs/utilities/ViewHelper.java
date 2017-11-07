@@ -1,4 +1,4 @@
-package com.ebs.android.utilities;
+package net.ericsson.emovs.utilities;
 
 import android.view.View;
 import android.view.ViewGroup;

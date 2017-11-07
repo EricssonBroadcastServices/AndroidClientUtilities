@@ -1,5 +1,7 @@
 package com.ebs.android.utilities;
 
+import net.ericsson.emovs.utilities.DateTimeParser;
+
 import org.junit.Test;
 
 import java.util.Calendar;

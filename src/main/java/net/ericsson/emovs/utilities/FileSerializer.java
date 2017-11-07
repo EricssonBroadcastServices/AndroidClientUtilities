@@ -1,4 +1,4 @@
-package com.ebs.android.utilities;
+package net.ericsson.emovs.utilities;
 
 import java.io.File;
 import java.io.FileInputStream;

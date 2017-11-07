@@ -1,4 +1,4 @@
-package com.ebs.android.utilities;
+package net.ericsson.emovs.utilities;
 
 /**
  * Created by Joao Coelho on 2017-09-26.
