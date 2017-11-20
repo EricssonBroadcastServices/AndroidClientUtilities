@@ -4,7 +4,7 @@ import android.app.ActivityManager;
 import android.content.Context;
 
 /**
- * Created by Benjamin on 2017-10-05.
+ * Created by Joao Coelho on 2017-10-05.
  */
 
 public class ServiceUtils {

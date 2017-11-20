@@ -13,4 +13,5 @@ public class ErrorCodes {
     public static final int DOWNLOAD_MANIFEST_FAILED = 6;
     public static final int DOWNLOAD_INIT_CHUNK_FAILED = 6;
     public static final int DOWNLOAD_SEGMENT_FAILED = 7;
+    public static final int GENERIC_PLAYBACK_FAILED = 8;
 }
