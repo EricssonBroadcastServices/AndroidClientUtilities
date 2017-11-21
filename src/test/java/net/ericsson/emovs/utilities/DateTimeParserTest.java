@@ -1,6 +1,6 @@
 package com.ebs.android.utilities;
 
-import net.ericsson.emovs.utilities.DateTimeParser;
+import net.ericsson.emovs.utilities.time.DateTimeParser;
 
 import org.junit.Test;
 

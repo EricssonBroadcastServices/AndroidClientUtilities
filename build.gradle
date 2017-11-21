@@ -54,6 +54,7 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    compile 'joda-time:joda-time:2.9.4'
 }
 
 task sourcesJar(type: Jar) {
