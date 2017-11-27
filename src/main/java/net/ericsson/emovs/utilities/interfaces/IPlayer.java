@@ -44,12 +44,16 @@ public interface IPlayer {
      */
     String[] getAudioTracks();
 
+    String[] getTextTracks();
+
     /**
      *
      *
      * @param language language code to select the audio track (e.g.: en, pt, es, fr)
      */
     void selectAudioTrack(String language);
+
+    void selectTextTrack(String language);
 
     /**
      * Returns selected audio track
