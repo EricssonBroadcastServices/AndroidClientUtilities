@@ -59,6 +59,9 @@ public class DashLicenseDetails {
                     }
                 }
             }
+            else {
+                return null;
+            }
 
             return new Pair<>(drmLicenseUrl, drmInitializationBase64);
         } catch (Exception e) {
