@@ -11,6 +11,7 @@ public class EMPRegistry {
     private static String businessUnit;
     private static String customer;
     private static String apiUrl;
+    private static String chromecastApiID;
 
     public static void bindApplicationContext(Context newContext) {
         context = newContext;
@@ -20,6 +21,10 @@ public class EMPRegistry {
         apiUrl = _apiUrl;
         customer = _customer;
         businessUnit = _businessUnit;
+    }
+
+    public static void bindChromecastAppId(String _appId) {
+        chromecastApiID = _appId;
     }
 
     public static Context applicationContext() {
@@ -38,4 +43,7 @@ public class EMPRegistry {
         return businessUnit;
     }
 
+    public static String chromecastAppId() {
+        return chromecastApiID;
+    }
 }
