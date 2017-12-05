@@ -12,6 +12,7 @@ public class EMPRegistry {
     private static String customer;
     private static String apiUrl;
     private static String chromecastApiID;
+    private static String locale;
 
     public static void bindApplicationContext(Context newContext) {
         context = newContext;
@@ -25,6 +26,10 @@ public class EMPRegistry {
 
     public static void bindChromecastAppId(String _appId) {
         chromecastApiID = _appId;
+    }
+
+    public static void bindLocale(String _locale) {
+        locale = _locale;
     }
 
     public static Context applicationContext() {
@@ -46,4 +51,6 @@ public class EMPRegistry {
     public static String chromecastAppId() {
         return chromecastApiID;
     }
+
+    public static String locale() { return locale; }
 }
