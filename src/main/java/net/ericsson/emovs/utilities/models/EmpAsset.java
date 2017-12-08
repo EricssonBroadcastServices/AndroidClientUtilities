@@ -28,6 +28,11 @@ public class EmpAsset extends IPlayable {
     }
 
     @Override
+    public LocalizedMetadata getLocalized() {
+        return localized;
+    }
+
+    @Override
     public JSONObject getJson() {
         try {
             if (this.jsonObj == null) {

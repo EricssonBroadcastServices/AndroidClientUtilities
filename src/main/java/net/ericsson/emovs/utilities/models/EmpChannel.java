@@ -21,6 +21,11 @@ public class EmpChannel extends IPlayable {
         this.localized = new LocalizedMetadata();
     }
 
+    @Override
+    public LocalizedMetadata getLocalized() {
+        return localized;
+    }
+
     public EmpProgram liveProgram() {
         if(programs == null || programs.size() == 0) {
             return null;
