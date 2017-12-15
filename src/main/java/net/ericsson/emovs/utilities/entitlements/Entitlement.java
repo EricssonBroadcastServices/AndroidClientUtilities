@@ -26,4 +26,6 @@ public class Entitlement implements Serializable {
     public long lastViewedOffset;
     public String productId;
     public String licenseExpiration;
+    public String licenseServerUrl;
+    public String drmInitDataBase64;
 }
