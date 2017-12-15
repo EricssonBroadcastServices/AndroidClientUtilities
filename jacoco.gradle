@@ -1,6 +1,16 @@
 apply plugin: 'jacoco'
 jacoco {
-    toolVersion = "0.7.5.201505241946"
+    toolVersion = "0.7.6.201602180812"
+}
+
+android {
+    testOptions {
+        unitTests.all {
+            jacoco {
+                includeNoLocationClasses = true
+            }
+        }
+    }
 }
 project.afterEvaluate {
     // Grab all build types and product flavors
@@ -46,7 +56,7 @@ project.afterEvaluate {
                 sourceDirectories = files(coverageSourceDirs)
                 executionData = files("${project.buildDir}/jacoco/${testTaskName}.exec")
                 reports {
-                    xml.enabled = true
+                    xml.enabled = false
                     html.enabled = true
                 }
             }
