@@ -50,11 +50,12 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    testCompile 'junit:junit:4.12'
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
     compile 'joda-time:joda-time:2.9.4'
+
+    // Test Dependencies
+    testCompile "org.mockito:mockito-core:2.+"
+    testCompile "org.robolectric:robolectric:3.5.1"
+    testCompile "junit:junit:4.12"
 }
 
 task sourcesJar(type: Jar) {
@@ -79,3 +80,6 @@ artifacts {
     archives sourcesJar
     archives javadocJar
 }
+
+
+apply from: './jacoco.gradle'

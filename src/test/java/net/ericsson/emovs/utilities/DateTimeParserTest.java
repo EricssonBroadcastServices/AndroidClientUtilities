@@ -1,14 +1,22 @@
 package com.ebs.android.utilities;
 
+import net.ericsson.emovs.utilities.models.EmpAsset;
 import net.ericsson.emovs.utilities.time.DateTimeParser;
 
+import org.json.JSONObject;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.robolectric.RobolectricTestRunner;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.LinkedList;
 import java.util.TimeZone;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.when;
 
 /*
  * Copyright (c) 2017 Ericsson. All Rights Reserved
@@ -21,6 +29,7 @@ import static org.junit.Assert.*;
  * THE LICENSE STATEMENT AND LIMITED WARRANTY FURNISHED WITH
  * THE PRODUCT.
  */
+@RunWith(RobolectricTestRunner.class)
 public class DateTimeParserTest {
     @Test
     public void parseUtcDateTime() throws Exception {
@@ -40,4 +49,16 @@ public class DateTimeParserTest {
         assertTrue(timeToCompare.endsWith("Z"));
     }
 
+    @Test
+    public void testMockito() throws Exception {
+        JSONObject object = new JSONObject();
+        object.put(",", "");
+
+        EmpAsset mockedAsset = mock(EmpAsset.class);
+        mockedAsset.assetId = "1";
+
+        when(mockedAsset.getId()).thenReturn("2");
+
+        assertTrue(mockedAsset.getId().equals("2"));
+    }
 }
