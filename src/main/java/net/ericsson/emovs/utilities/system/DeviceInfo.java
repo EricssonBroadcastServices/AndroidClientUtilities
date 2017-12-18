@@ -30,8 +30,10 @@ public class DeviceInfo implements Serializable {
         try {
             String android_id = getString(resolver, ANDROID_ID);
             if (android_id == null) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
-                    android_id = Build.getSerial();
+                if (Build.class.getDeclaredMethod("getSerial") != null) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
+                        android_id = Build.getSerial();
+                    }
                 }
             }
             if (android_id == null) {

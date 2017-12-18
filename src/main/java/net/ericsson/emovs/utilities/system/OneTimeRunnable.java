@@ -17,6 +17,7 @@ public class OneTimeRunnable implements Runnable {
         if(invalidated) {
             return;
         }
+        invalidated = true;
         if (this.runnable != null) {
             this.runnable.run();
         }

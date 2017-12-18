@@ -45,6 +45,7 @@ public class FileSerializer {
             JSONObject serialized = new JSONObject();
 
             for (Field field : object.getClass().getDeclaredFields()) {
+                field.setAccessible(true);
                 Object value = field.get(object);
                 serialized.put(field.getName(), value);
             }
@@ -88,8 +89,14 @@ public class FileSerializer {
             JSONObject serialized = new JSONObject(objectString);
 
             for (Field field : object.getClass().getDeclaredFields()) {
+                field.setAccessible(true);
                 Object value = serialized.opt(field.getName());
-                field.set(object, value);
+                try {
+                    field.set(object, value);
+                }
+                catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
 
             return object;
