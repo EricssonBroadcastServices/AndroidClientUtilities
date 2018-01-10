@@ -13,6 +13,7 @@ public class Entitlement implements Serializable {
     public String requestUrl;
     public String adParameter;
     public String mediaLocator;
+    public boolean isUnifiedStream;
     public String entitlementType;
     public String playSessionId;
     public boolean isLive;

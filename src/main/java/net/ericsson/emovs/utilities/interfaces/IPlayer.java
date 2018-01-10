@@ -68,4 +68,8 @@ public interface IPlayer {
      * @return selected text language
      */
     String getSelectedTextTrack();
+
+    long getTimehisftDelay();
+
+    void setTimeshiftDelay(long timeshift);
 }
