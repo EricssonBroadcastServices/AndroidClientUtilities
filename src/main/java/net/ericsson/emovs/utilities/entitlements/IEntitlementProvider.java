@@ -6,6 +6,8 @@ package net.ericsson.emovs.utilities.entitlements;
 
 public interface IEntitlementProvider {
 
+    boolean isEntitled(String mediaId);
+
     void playVod(final String assetId, final IEntitlementCallback listener);
 
     void playCatchup(final String channelId, final String programId, final IEntitlementCallback listener);
