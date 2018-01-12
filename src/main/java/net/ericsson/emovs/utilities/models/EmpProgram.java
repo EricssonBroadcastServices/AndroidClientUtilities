@@ -10,6 +10,7 @@ import org.joda.time.Duration;
 public class EmpProgram extends EmpAsset {
     public String programId;
     public String channelId;
+    // TODO: refactor this to use monotonic time
     public DateTime startDateTime;
     public DateTime endDateTime;
 

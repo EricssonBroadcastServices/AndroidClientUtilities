@@ -72,4 +72,6 @@ public interface IPlayer {
     long getTimehisftDelay();
 
     void setTimeshiftDelay(long timeshift);
+
+    void fail(int errorCode, String errorMessage);
 }
