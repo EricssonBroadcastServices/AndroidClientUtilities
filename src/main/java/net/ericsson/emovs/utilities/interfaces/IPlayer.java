@@ -1,6 +1,9 @@
 package net.ericsson.emovs.utilities.interfaces;
 
 
+import android.app.Activity;
+import android.content.Context;
+
 /**
  * Created by Joao Coelho on 2017-11-21.
  */
@@ -88,4 +91,6 @@ public interface IPlayer {
     long[] getBufferedTimeRange();
 
     void fail(int errorCode, String errorMessage);
+
+    Activity getActivity();
 }
