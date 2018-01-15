@@ -73,5 +73,19 @@ public interface IPlayer {
 
     void setTimeshiftDelay(long timeshift);
 
+    void seekToTime(long unixTimeMs);
+
+    long getPlayheadTime();
+
+    long getPlayheadPosition();
+
+    long[] getSeekRange();
+
+    long[] getSeekTimeRange();
+
+    long[] getBufferedRange();
+
+    long[] getBufferedTimeRange();
+
     void fail(int errorCode, String errorMessage);
 }
