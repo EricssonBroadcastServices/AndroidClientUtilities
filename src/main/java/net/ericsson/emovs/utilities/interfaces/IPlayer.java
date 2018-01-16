@@ -14,7 +14,7 @@ public interface IPlayer {
     void resume();
     void stop();
     void seekTo(long positionMs);
-    long getCurrentTime();
+    long getServerTime();
     long getDuration();
     boolean isAutoPlay();
     boolean isPlaying();

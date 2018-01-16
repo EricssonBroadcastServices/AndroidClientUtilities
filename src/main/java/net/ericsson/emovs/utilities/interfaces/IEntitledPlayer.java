@@ -2,7 +2,7 @@ package net.ericsson.emovs.utilities.interfaces;
 
 
 import net.ericsson.emovs.utilities.entitlements.Entitlement;
-
+import net.ericsson.emovs.utilities.models.EmpProgram;
 
 
 /**
@@ -13,4 +13,5 @@ public interface IEntitledPlayer extends IPlayer {
     Entitlement getEntitlement();
     IPlayable getPlayable();
     String getSessionId();
+    EmpProgram getCurrentProgram();
 }
