@@ -93,4 +93,6 @@ public interface IPlayer {
     void fail(int errorCode, String errorMessage);
 
     Activity getActivity();
+
+    void trigger(IPlaybackEventListener.EventId eventId, Object param);
 }
