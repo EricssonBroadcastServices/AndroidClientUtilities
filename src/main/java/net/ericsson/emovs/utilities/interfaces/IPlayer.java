@@ -72,10 +72,6 @@ public interface IPlayer {
      */
     String getSelectedTextTrack();
 
-    long getTimehisftDelay();
-
-    void setTimeshiftDelay(long timeshift);
-
     void seekToTime(long unixTimeMs);
 
     long getPlayheadTime();
