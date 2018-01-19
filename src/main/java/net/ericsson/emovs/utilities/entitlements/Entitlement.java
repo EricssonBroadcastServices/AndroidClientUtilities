@@ -29,4 +29,6 @@ public class Entitlement implements Serializable {
     public String licenseExpiration;
     public String licenseServerUrl;
     public String drmInitDataBase64;
+    public long lastViewedTime;
+    public long liveTime;
 }
