@@ -3,6 +3,7 @@ package net.ericsson.emovs.utilities.interfaces;
 
 import android.app.Activity;
 import android.content.Context;
+import android.view.View;
 
 /**
  * Created by Joao Coelho on 2017-11-21.
@@ -91,4 +92,6 @@ public interface IPlayer {
     Activity getActivity();
 
     void trigger(IPlaybackEventListener.EventId eventId, Object param);
+
+    View getSubtitlesView();
 }
