@@ -12,6 +12,7 @@ import android.view.View;
 public interface IPlayer {
     void release();
     void pause();
+    boolean isPaused();
     void resume();
     void stop();
     void seekTo(long positionMs);

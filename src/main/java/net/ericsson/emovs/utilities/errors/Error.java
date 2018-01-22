@@ -42,6 +42,7 @@ public class Error {
     public static final Error FORBIDDEN = new Error("FORBIDDEN");
     public static final Error CONNECTION_REFUSED = new Error("CONNECTION_REFUSED");
     public static final Error UNKNOWN_ERROR = new Error("UNKNOWN_ERROR");
+    public static final Error PROGRAM_NOT_FOUND = new Error("PROGRAM_NOT_FOUND");
 
     final String mMessage;
 
