@@ -24,11 +24,11 @@ public class Entitlement implements Serializable {
     public Integer maxBitrate;
     public Integer minBitrate;
     public int imcMode;
-    public long lastViewedOffset;
     public String productId;
     public String licenseExpiration;
     public String licenseServerUrl;
     public String drmInitDataBase64;
-    public long lastViewedTime;
-    public long liveTime;
+    public Long lastViewedOffset;
+    public Long lastViewedTime;
+    public Long liveTime;
 }
