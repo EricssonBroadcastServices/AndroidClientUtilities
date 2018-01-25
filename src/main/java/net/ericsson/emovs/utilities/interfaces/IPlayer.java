@@ -95,4 +95,8 @@ public interface IPlayer {
     void trigger(IPlaybackEventListener.EventId eventId, Object param);
 
     View getSubtitlesView();
+
+    boolean canSeekForward();
+    boolean canSeekBack();
+    boolean canPause();
 }
