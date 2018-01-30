@@ -13,6 +13,11 @@ public interface IEntitledPlayer extends IPlayer {
     /**
      * Returns Entitlement for current playback.
      * This object has important playback-related information, for example: manifest locator, contract restrictions, bookmark values, etc..
+     * <p>
+     *    Contract Restrictions:
+     *    - ffEnabled: if fast-forward is enabled then the user can seek to a time after the playhead time
+     *    - rwEnabled: if fast-rewind is enabled then the user can seek to a time before the playhead time
+     * </p>
      */
     Entitlement getEntitlement();
 
