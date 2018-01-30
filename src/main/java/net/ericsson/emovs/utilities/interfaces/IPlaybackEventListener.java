@@ -116,5 +116,10 @@ public interface IPlaybackEventListener {
      */
     void onControllerVisibility(ControllerVisibility visibility);
 
+    /**
+     * Fired when current playback crosses a program boundary and starts playing a new program
+     *
+     * @param newProgram
+     */
     void onProgramChange(EmpProgram newProgram);
 }
