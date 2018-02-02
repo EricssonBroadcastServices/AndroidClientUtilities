@@ -2,6 +2,7 @@ package net.ericsson.emovs.utilities.analytics;
 
 
 import net.ericsson.emovs.utilities.interfaces.IPlayer;
+import net.ericsson.emovs.utilities.models.EmpProgram;
 
 /**
  * Created by Joao Coelho on 2017-11-17.
@@ -83,6 +84,10 @@ public class AnalyticsPlaybackConnector {
     }
 
     public void onError(int errorCode, String errorMessage) {
+        // Stub!
+    }
+
+    public void onProgramChange(EmpProgram newProgram) {
         // Stub!
     }
 }
