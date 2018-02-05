@@ -9,7 +9,8 @@ import net.ericsson.emovs.utilities.models.EmpProgram;
  */
 public interface IPlaybackEventListener {
     enum EventId {
-        PROGRAM_CHANGED
+        PROGRAM_CHANGED,
+        WARNING
     };
     /**
      * Fired when player is initiated
@@ -102,12 +103,20 @@ public interface IPlaybackEventListener {
     void onStop();
 
     /**
-     * Fired when an error occurs
+     * Fired when an error occurs - by definition, an error is any event worthy of interest that causes the playback to stop without user's direct or indirect intervention
      *
      * @param errorCode
      * @param errorMessage
      */
     void onError(int errorCode, String errorMessage);
+
+    /**
+     * Fired when a warning occurs - by definition, a warning is any event worthy of interest that does not cause the playback to stop
+     *
+     * @param warningCode
+     * @param warningMessage
+     */
+    void onWarning(int warningCode, String warningMessage);
 
     /**
      * Fired when controller visibility changes (hidden or visible)

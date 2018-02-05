@@ -212,5 +212,9 @@ public interface IPlayer {
      */
     boolean canPause();
 
+    /**
+     * Seeks a live stream to the live edge
+     *
+     */
     void seekToLive();
 }
