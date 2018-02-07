@@ -16,4 +16,5 @@ public class ErrorCodes {
     public static final int GENERIC_PLAYBACK_FAILED = 8;
     public static final int PLAYBACK_NOT_ENTITLED = 9;
     public static final int PLAYBACK_PROGRAM_NOT_FOUND = 10;
+    public static final int EXPOSURE_DOWN = 11;
 }

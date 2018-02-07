@@ -217,4 +217,10 @@ public interface IPlayer {
      *
      */
     void seekToLive();
+
+    /**
+     * Executes a runnable in the player's UI thread
+     *
+     */
+    void runOnUiThread(Runnable runnable);
 }

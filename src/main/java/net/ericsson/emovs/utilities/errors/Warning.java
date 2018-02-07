@@ -14,12 +14,10 @@ package net.ericsson.emovs.utilities.errors;
 
 import android.content.Context;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 public class Warning {
-    public static final Warning GAPS_IN_EPG = new Warning(WarningCodes.GAPS_IN_EPG, "GAPS_IN_EPG");
+    public static final Warning PROGRAM_SERVICE_GAPS_IN_EPG = new Warning(WarningCodes.PROGRAM_SERVICE_GAPS_IN_EPG, "PROGRAM_SERVICE_GAPS_IN_EPG");
     public static final Warning SEEK_NOT_POSSIBLE = new Warning(WarningCodes.SEEK_NOT_ENTITLED, "SEEK_NOT_POSSIBLE");
+    public static final Warning PROGRAM_SERVICE_ENTITLEMENT_CHECK_NOT_POSSIBLE = new Warning(WarningCodes.PROGRAM_SERVICE_ENTITLEMENT_CHECK_NOT_POSSIBLE, "BACKEND_UNAVAILABLE");
 
     final String mMessage;
     final int mCode;

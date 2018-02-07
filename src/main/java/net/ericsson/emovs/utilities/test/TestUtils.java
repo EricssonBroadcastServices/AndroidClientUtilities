@@ -24,7 +24,7 @@ public class TestUtils {
 
                 staticInstance.set(null, myProviderClass.cast(providerToMock));
             } catch (NoSuchFieldException e) {
-                e.printStackTrace();
+                // Do nothing - continue
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }
