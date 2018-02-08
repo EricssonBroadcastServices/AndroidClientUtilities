@@ -30,4 +30,21 @@ public class TestUtils {
             }
         }
     }
+
+    public static void mockPrivateAttribute(Object myObject, String attributeName, Object mockValue) {
+        try {
+            Field classInstance = myObject.getClass().getDeclaredField(attributeName);
+            if (classInstance.isAccessible() == false) {
+                classInstance.setAccessible(true);
+            }
+
+            Field modifiersField = Field.class.getDeclaredField("modifiers");
+            modifiersField.setAccessible(true);
+            modifiersField.setInt(classInstance, classInstance.getModifiers() & ~Modifier.FINAL);
+
+            classInstance.set(classInstance.get(myObject), classInstance.getType().cast(mockValue));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
