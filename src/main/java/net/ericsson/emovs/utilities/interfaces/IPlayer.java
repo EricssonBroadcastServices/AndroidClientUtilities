@@ -223,4 +223,13 @@ public interface IPlayer {
      *
      */
     void runOnUiThread(Runnable runnable);
+
+    /**
+     * Restarts playback from the beginning:
+     * - Starts from offset 0 for VOD
+     * - Starts from program start for Live Programs and Catchups
+     * - Starts from offset 0 for Channels without EPG
+     * - Random streams will all start from offset 0
+     */
+    void startOver();
 }
