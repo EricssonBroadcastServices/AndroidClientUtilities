@@ -3,6 +3,9 @@ package net.ericsson.emovs.utilities.drm;
 import android.util.Log;
 import android.util.Pair;
 
+import net.ericsson.emovs.utilities.system.ParameterizedRunnable;
+import net.ericsson.emovs.utilities.system.RunnableThread;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -12,6 +15,7 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.net.URL;
 import java.util.UUID;
+import java.util.concurrent.RunnableFuture;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -28,46 +32,58 @@ import org.apache.commons.io.FileUtils;
 public class DashLicenseDetails {
     private static final String TAG = DashLicenseDetails.class.toString();
 
-    public static Pair<String, String> getLicenseDetails(String manifestUrl, boolean isOffline) {
-        try {
-            XPath xpath = XPathFactory.newInstance().newXPath();
-            Document mpd = null;
-            if(isOffline) {
-                mpd = getManifestDocument(new File(manifestUrl));
-            }
-            else {
-                mpd = getManifestDocument(new URL(manifestUrl));
-            }
-            NodeList laurls = (NodeList) xpath.compile("//urn:microsoft:laurl").evaluate(mpd, XPathConstants.NODESET);
-            Log.d(TAG, "Node Count: " + laurls.getLength());
-            String drmLicenseUrl = null;
-            String drmInitializationBase64 = null;
-            if (laurls.getLength() > 0) {
-                Node laurl = laurls.item(0);
-                NamedNodeMap laurlAttrs = laurl.getAttributes();
-                Node licenseServerUrlNode = laurlAttrs.getNamedItem("licenseUrl");
-                drmLicenseUrl = licenseServerUrlNode.getNodeValue();
-                Log.d(TAG, "License Server URL: " + drmLicenseUrl);
-
-                NodeList psshCandidates = laurl.getParentNode().getChildNodes();
-                for (int j = 0; j < psshCandidates.getLength(); ++j) {
-                    Node pssh = psshCandidates.item(j);
-                    if (pssh.getNodeName().contains("pssh")) {
-                        drmInitializationBase64 = pssh.getTextContent();
-                        Log.d(TAG, "EMP Initialization Data: " + drmInitializationBase64);
-                        break;
+    public static void getLicenseDetails(final String manifestUrl, final boolean isOffline, final ParameterizedRunnable<Pair<String, String>> onDetails) {
+        new RunnableThread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    XPath xpath = XPathFactory.newInstance().newXPath();
+                    Document mpd = null;
+                    if(isOffline) {
+                        mpd = getManifestDocument(new File(manifestUrl));
                     }
+                    else {
+                        mpd = getManifestDocument(new URL(manifestUrl));
+                    }
+                    NodeList laurls = (NodeList) xpath.compile("//urn:microsoft:laurl").evaluate(mpd, XPathConstants.NODESET);
+                    Log.d(TAG, "Node Count: " + laurls.getLength());
+                    String drmLicenseUrl = null;
+                    String drmInitializationBase64 = null;
+                    if (laurls.getLength() > 0) {
+                        Node laurl = laurls.item(0);
+                        NamedNodeMap laurlAttrs = laurl.getAttributes();
+                        Node licenseServerUrlNode = laurlAttrs.getNamedItem("licenseUrl");
+                        drmLicenseUrl = licenseServerUrlNode.getNodeValue();
+                        Log.d(TAG, "License Server URL: " + drmLicenseUrl);
+
+                        NodeList psshCandidates = laurl.getParentNode().getChildNodes();
+                        for (int j = 0; j < psshCandidates.getLength(); ++j) {
+                            Node pssh = psshCandidates.item(j);
+                            if (pssh.getNodeName().contains("pssh")) {
+                                drmInitializationBase64 = pssh.getTextContent();
+                                Log.d(TAG, "EMP Initialization Data: " + drmInitializationBase64);
+                                break;
+                            }
+                        }
+                        if (onDetails != null) {
+                            onDetails.run(new Pair<>(drmLicenseUrl, drmInitializationBase64));
+                        }
+                    }
+                    else {
+                        if (onDetails != null) {
+                            onDetails.run(null);
+                        }
+                    }
+                    return;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                if (onDetails != null) {
+                    onDetails.run(null);
                 }
             }
-            else {
-                return null;
-            }
-
-            return new Pair<>(drmLicenseUrl, drmInitializationBase64);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
+        }).start();
     }
 
     private static Document getManifestDocument(File manifestFile) throws Exception {
