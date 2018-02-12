@@ -2,6 +2,7 @@ package net.ericsson.emovs.utilities.interfaces;
 
 
 import net.ericsson.emovs.utilities.entitlements.Entitlement;
+import net.ericsson.emovs.utilities.entitlements.IEntitlementProvider;
 import net.ericsson.emovs.utilities.models.EmpProgram;
 
 
@@ -37,4 +38,8 @@ public interface IEntitledPlayer extends IPlayer {
      * - For instance when a program boundary is crossed, then a new program is issued
      */
     EmpProgram getCurrentProgram();
+
+    IMetadataProvider getMetadataProvider();
+
+    IEntitlementProvider getEntitlementProvider();
 }
