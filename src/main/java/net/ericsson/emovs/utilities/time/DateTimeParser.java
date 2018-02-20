@@ -54,4 +54,13 @@ public class DateTimeParser {
         iso8601.setTimeZone(utc);
         return iso8601.format(datetime);
     }
+
+    public static String formatDisplayTime(long duration) {
+        long seconds = duration / 1000;
+        long minutes = seconds / 60;
+        long hours = minutes / 60;
+        seconds %= 60;
+        minutes %= 60;
+        return (hours > 0 ? ((hours < 10 ? "0" : "") + hours + ":") : "") + ((minutes < 10 ? "0" : "") + minutes) + ":" + (seconds < 10 ? "0" : "") + seconds;
+    }
 }

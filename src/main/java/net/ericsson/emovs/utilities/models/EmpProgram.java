@@ -1,5 +1,7 @@
 package net.ericsson.emovs.utilities.models;
 
+import net.ericsson.emovs.utilities.time.DateTimeParser;
+
 import org.joda.time.DateTime;
 import org.joda.time.Duration;
 
@@ -43,19 +45,6 @@ public class EmpProgram extends EmpAsset {
         }
         long programDuration = this.endDateTime.getMillis() - this.startDateTime.getMillis();
         return programDuration;
-    }
-
-    public String getDurationAsString() {
-        Long duration = getDuration();
-        if (duration == null) {
-            return "N/A";
-        }
-        long seconds = duration / 1000;
-        long minutes = seconds / 60;
-        long hours = minutes / 60;
-        seconds %= 60;
-        minutes %= 60;
-        return (hours > 0 ? ((hours < 10 ? "0" : "") + hours + ":") : "") + ((minutes < 10 ? "0" : "") + minutes) + ":" + (seconds < 10 ? "0" : "") + seconds;
     }
 
     public String getTime(DateRef dref) {
