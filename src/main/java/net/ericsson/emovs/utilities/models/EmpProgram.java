@@ -37,6 +37,27 @@ public class EmpProgram extends EmpAsset {
         return duration.getMillis() > 0;
     }
 
+    public Long getDuration() {
+        if (this.endDateTime == null || this.startDateTime == null) {
+            return null;
+        }
+        long programDuration = this.endDateTime.getMillis() - this.startDateTime.getMillis();
+        return programDuration;
+    }
+
+    public String getDurationAsString() {
+        Long duration = getDuration();
+        if (duration == null) {
+            return "N/A";
+        }
+        long seconds = duration / 1000;
+        long minutes = seconds / 60;
+        long hours = minutes / 60;
+        seconds %= 60;
+        minutes %= 60;
+        return (hours > 0 ? ((hours < 10 ? "0" : "") + hours + ":") : "") + ((minutes < 10 ? "0" : "") + minutes) + ":" + (seconds < 10 ? "0" : "") + seconds;
+    }
+
     public String getTime(DateRef dref) {
         DateTime refDt = null;
         if(dref == DateRef.START) {
