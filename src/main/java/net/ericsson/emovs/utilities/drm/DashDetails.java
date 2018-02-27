@@ -15,7 +15,6 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.net.URL;
 import java.util.UUID;
-import java.util.concurrent.RunnableFuture;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -29,8 +28,39 @@ import org.apache.commons.io.FileUtils;
  * Created by Joao Coelho on 2017-11-21.
  */
 
-public class DashLicenseDetails {
-    private static final String TAG = DashLicenseDetails.class.toString();
+public class DashDetails {
+    private static final String TAG = DashDetails.class.toString();
+
+    public static void isValidManifest(final String manifestUrl, final boolean isOffline, final Runnable onValid, final Runnable onInvalid) {
+        new RunnableThread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    XPath xpath = XPathFactory.newInstance().newXPath();
+                    Document mpd = null;
+                    if(isOffline) {
+                        mpd = getManifestDocument(new File(manifestUrl));
+                    }
+                    else {
+                        mpd = getManifestDocument(new URL(manifestUrl));
+                    }
+                    NodeList sets = (NodeList) xpath.compile("//urn:mpeg:dash:schema:mpd:2011:AdaptationSet").evaluate(mpd, XPathConstants.NODESET);
+
+                    if (sets.getLength() == 0) {
+                        if (onInvalid != null) onInvalid.run();
+                    }
+                    else {
+                        if (onValid != null) onValid.run();
+                    }
+
+                    return;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    onInvalid.run();
+                }
+            }
+        }).start();
+    }
 
     public static void getLicenseDetails(final String manifestUrl, final boolean isOffline, final ParameterizedRunnable<Pair<String, String>> onDetails) {
         new RunnableThread(new Runnable() {
