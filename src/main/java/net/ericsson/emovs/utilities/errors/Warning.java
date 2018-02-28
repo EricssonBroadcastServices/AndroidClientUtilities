@@ -15,7 +15,7 @@ package net.ericsson.emovs.utilities.errors;
 import android.content.Context;
 
 public class Warning {
-    public static final Warning PROGRAM_SERVICE_GAPS_IN_EPG = new Warning(WarningCodes.PROGRAM_SERVICE_GAPS_IN_EPG, "PROGRAM_SERVICE_GAPS_IN_EPG");
+    public static final Warning PROGRAM_SERVICE_GAPS_IN_EPG_OR_NO_EPG = new Warning(WarningCodes.PROGRAM_SERVICE_GAPS_IN_EPG_OR_NO_EG, "PROGRAM_SERVICE_GAPS_IN_EPG_OR_NO_EPG");
     public static final Warning SEEK_NOT_POSSIBLE = new Warning(WarningCodes.SEEK_NOT_ENTITLED, "SEEK_NOT_POSSIBLE");
     public static final Warning PROGRAM_SERVICE_ENTITLEMENT_CHECK_NOT_POSSIBLE = new Warning(WarningCodes.PROGRAM_SERVICE_ENTITLEMENT_CHECK_NOT_POSSIBLE, "BACKEND_UNAVAILABLE");
     public static final Warning INVALID_START_TIME = new Warning(WarningCodes.INVALID_START_TIME, "INVALID_START_TIME");
