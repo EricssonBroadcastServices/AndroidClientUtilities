@@ -1,7 +1,10 @@
 package net.ericsson.emovs.utilities.system;
 
+import android.annotation.SuppressLint;
 import android.app.ActivityManager;
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 
 /**
  * Created by Joao Coelho on 2017-10-05.
@@ -16,5 +19,26 @@ public class ServiceUtils {
             }
         }
         return false;
+    }
+
+    public static boolean haveNetworkConnection(Context ctx) {
+        boolean haveConnectedWifi = false;
+        boolean haveConnectedMobile = false;
+        try {
+            ConnectivityManager cm = (ConnectivityManager) ctx.getSystemService(Context.CONNECTIVITY_SERVICE);
+            @SuppressLint("MissingPermission") NetworkInfo[] netInfo = cm.getAllNetworkInfo();
+            for (NetworkInfo ni : netInfo) {
+                if (ni.getTypeName().equalsIgnoreCase("WIFI"))
+                    if (ni.isConnected())
+                        haveConnectedWifi = true;
+                if (ni.getTypeName().equalsIgnoreCase("MOBILE"))
+                    if (ni.isConnected())
+                        haveConnectedMobile = true;
+            }
+            return haveConnectedWifi || haveConnectedMobile;
+        }
+        catch(Exception e) {
+            return false;
+        }
     }
 }

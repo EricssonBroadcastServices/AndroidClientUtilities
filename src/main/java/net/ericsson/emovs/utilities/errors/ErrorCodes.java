@@ -18,4 +18,5 @@ public class ErrorCodes {
     public static final int PLAYBACK_PROGRAM_NOT_FOUND = 10;
     public static final int EXPOSURE_DOWN = 11;
     public static final int INVALID_MANIFEST = 12;
+    public static final int NETWORK_ERROR = 13;
 }
