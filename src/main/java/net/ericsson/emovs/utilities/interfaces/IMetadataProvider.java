@@ -11,6 +11,7 @@ import java.util.ArrayList;
  */
 
 public interface IMetadataProvider {
+    void getEpgCacheFirst(String channelId, final long epgTimeNowMs, final IMetadataCallback<ArrayList<EmpProgram>> callback, EpgQueryParameters params);
     void getEpgWithTime(String channelId, long nowMs, IMetadataCallback<ArrayList<EmpProgram>> iMetadataCallback, EpgQueryParameters epgParams);
     void getProgramDetails(String channelId, String programId, IMetadataCallback<EmpProgram> iMetadataCallback);
 }
