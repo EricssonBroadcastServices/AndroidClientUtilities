@@ -32,4 +32,8 @@ public class EpgQueryParameters extends BaseQueryParams {
         this.futureTimeFrame = futureTimeFrame;
         return this;
     }
+
+    public EpgQueryParameters clone() {
+        return new EpgQueryParameters().setPastTimeFrame(this.pastTimeFrame).setFutureTimeFrame(this.futureTimeFrame);
+    }
 }
