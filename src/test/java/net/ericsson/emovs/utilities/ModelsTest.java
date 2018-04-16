@@ -58,13 +58,13 @@ public class ModelsTest {
         assertTrue(imgBack2 == null);
         assertTrue(asset.getLocalized().getDescriptions("en").equals("Test subtitle"));
         assertTrue(asset.getLocalized().getTitle("en").equals("My title"));
-        assertTrue(asset.getLocalized().getDescriptions("pt") == null);
-        assertTrue(asset.getLocalized().getTitle("pt") == null);
+        assertTrue(asset.getLocalized().getDescriptions("pt").equals("Test subtitle"));
+        assertTrue(asset.getLocalized().getTitle("pt").equals("My title"));
         assertTrue(asset.getLocalized().getImage("en", EmpImage.Orientation.LANDSCAPE) == img);
-        assertTrue(asset.getLocalized().getImage("en", EmpImage.Orientation.PORTRAIT) == null);
+        assertTrue(asset.getLocalized().getImage("en", EmpImage.Orientation.PORTRAIT) == img);
         assertTrue(asset.getLocalized().getImage("en", EmpImage.Orientation.LANDSCAPE, "Poster") == img);
-        assertTrue(asset.getLocalized().getImage("en", EmpImage.Orientation.PORTRAIT, "Poster") == null);
-        assertTrue(asset.getLocalized().getImage("en", EmpImage.Orientation.LANDSCAPE, "Thumbnail") == null);
+        assertTrue(asset.getLocalized().getImage("en", EmpImage.Orientation.PORTRAIT, "Poster") == img);
+        assertTrue(asset.getLocalized().getImage("en", EmpImage.Orientation.LANDSCAPE, "Thumbnail") == img);
 
         EmpAsset asset2 = new EmpAsset();
         asset2.setProps(asset);
