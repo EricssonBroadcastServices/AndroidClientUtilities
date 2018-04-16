@@ -55,7 +55,7 @@ public class ModelsTest {
         EmpImage imgBack = metadata.getImage("en", "Poster");
         EmpImage imgBack2 = metadata.getImage("en", "Thumbnail");
         assertTrue(imgBack == img);
-        assertTrue(imgBack2 == null);
+        assertTrue(imgBack2 == img);
         assertTrue(asset.getLocalized().getDescriptions("en").equals("Test subtitle"));
         assertTrue(asset.getLocalized().getTitle("en").equals("My title"));
         assertTrue(asset.getLocalized().getDescriptions("pt").equals("Test subtitle"));
