@@ -69,7 +69,7 @@ public class ModelsTest {
         EmpAsset asset2 = new EmpAsset();
         asset2.setProps(asset);
         assertEquals("12345", asset.getId());
-        assertTrue(asset.getLocalized().getDescriptions("pt") == null);
+        assertTrue(asset.getLocalized().getDescriptions("pt", false) == null);
 
         JSONObject json = new JSONObject();
         json.put("assetId", "12346");

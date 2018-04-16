@@ -20,8 +20,22 @@ public class LocalizedMetadata implements Serializable {
         descriptions = new HashMap<>();
     }
 
+    public String getDescriptionsQuick() {
+        if (this.descriptions.size() == 0 || !this.descriptions.values().iterator().hasNext()) {
+            return null;
+        }
+        return this.descriptions.values().iterator().next();
+    }
+
     public String getDescriptions(String locale) {
+        return getDescriptions(locale, true);
+    }
+
+    public String getDescriptions(String locale, boolean anyIfNotFound) {
         if (this.descriptions.containsKey(locale) == false) {
+            if (anyIfNotFound) {
+                return getDescriptionsQuick();
+            }
             return null;
         }
         return this.descriptions.get(locale);
@@ -42,8 +56,15 @@ public class LocalizedMetadata implements Serializable {
     }
 
     public String getTitle(String locale) {
+        return getTitle(locale, true);
+    }
+
+    public String getTitle(String locale, boolean anyIfNotFound) {
         if (this.titles.containsKey(locale) == false) {
-            return getTitleQuick();
+            if (anyIfNotFound) {
+                return getTitleQuick();
+            }
+            return null;
         }
         return this.titles.get(locale);
     }
@@ -69,8 +90,15 @@ public class LocalizedMetadata implements Serializable {
     }
 
     public EmpImage getImage(String _locale, String filterType) {
+        return getImage(_locale, filterType, true);
+    }
+
+    public EmpImage getImage(String _locale, String filterType, boolean anyIfNotFound) {
         String locale = _locale;
         if (this.images.containsKey(locale) == false) {
+            if (!anyIfNotFound) {
+                return null;
+            }
             String[] locales = getImageLocales();
             if (locales == null) {
                 return null;
@@ -82,12 +110,22 @@ public class LocalizedMetadata implements Serializable {
                 return image;
             }
         }
+        if (!anyIfNotFound) {
+            return null;
+        }
         return getImageQuick();
     }
 
     public EmpImage getImage(String _locale, EmpImage.Orientation filterOrientation) {
+        return getImage(_locale, filterOrientation, true);
+    }
+
+    public EmpImage getImage(String _locale, EmpImage.Orientation filterOrientation, boolean anyIfNotFound) {
         String locale = _locale;
         if (this.images.containsKey(locale) == false) {
+            if (!anyIfNotFound) {
+                return null;
+            }
             String[] locales = getImageLocales();
             if (locales == null) {
                 return null;
@@ -99,12 +137,22 @@ public class LocalizedMetadata implements Serializable {
                 return image;
             }
         }
+        if (!anyIfNotFound) {
+            return null;
+        }
         return getImageQuick();
     }
 
     public EmpImage getImage(String _locale, EmpImage.Orientation filterOrientation, String filterType) {
+        return getImage(_locale, filterOrientation, filterType, true);
+    }
+
+    public EmpImage getImage(String _locale, EmpImage.Orientation filterOrientation, String filterType, boolean anyIfNotFound) {
         String locale = _locale;
         if (this.images.containsKey(locale) == false) {
+            if (!anyIfNotFound) {
+                return null;
+            }
             String[] locales = getImageLocales();
             if (locales == null) {
                 return null;
@@ -115,6 +163,9 @@ public class LocalizedMetadata implements Serializable {
             if (image.orientation == filterOrientation && filterType.equals(image.type)) {
                 return image;
             }
+        }
+        if (!anyIfNotFound) {
+            return null;
         }
         return getImageQuick();
     }
