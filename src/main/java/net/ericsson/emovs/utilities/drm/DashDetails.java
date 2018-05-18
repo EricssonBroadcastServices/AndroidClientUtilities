@@ -31,7 +31,7 @@ import org.apache.commons.io.FileUtils;
 public class DashDetails {
     private static final String TAG = DashDetails.class.toString();
 
-    public static void isValidManifest(final String manifestUrl, final boolean isOffline, final Runnable onValid, final Runnable onInvalid) {
+    public static void isValidManifest(final String manifestUrl, final boolean isOffline, final Runnable onValid, final Runnable onInvalid, final Runnable onHttpRequired, final boolean recursive) {
         new RunnableThread(new Runnable() {
             @Override
             public void run() {
@@ -56,7 +56,12 @@ public class DashDetails {
                     return;
                 } catch (Exception e) {
                     e.printStackTrace();
-                    onInvalid.run();
+                    if (recursive) {
+                        isValidManifest(manifestUrl.replace("https://", "http://"), isOffline, onHttpRequired, onInvalid, onHttpRequired, false);
+                    }
+                    else {
+                        onInvalid.run();
+                    }
                 }
             }
         }).start();
