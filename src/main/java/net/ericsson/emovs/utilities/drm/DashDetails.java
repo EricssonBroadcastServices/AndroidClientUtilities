@@ -31,37 +31,44 @@ import org.apache.commons.io.FileUtils;
 public class DashDetails {
     private static final String TAG = DashDetails.class.toString();
 
-    public static void isValidManifest(final String manifestUrl, final boolean isOffline, final Runnable onValid, final Runnable onInvalid, final Runnable onHttpRequired, final boolean recursive) {
+    public static void isValidManifest(final String manifestUrl, final boolean isOffline, final Runnable onValid, final ParameterizedRunnable<String> onInvalid, final Runnable onHttpRequired) {
         new RunnableThread(new Runnable() {
             @Override
             public void run() {
-                try {
-                    XPath xpath = XPathFactory.newInstance().newXPath();
-                    Document mpd = null;
-                    if(isOffline) {
-                        mpd = getManifestDocument(new File(manifestUrl));
+                final int MAX_RETRIES = 5;
+                String innerManifestUrl = manifestUrl;
+                Document mpd = null;
+                for (int i = 0; i < MAX_RETRIES; ++i) {
+                    if (i == 3) {
+                        innerManifestUrl = innerManifestUrl.replace("https://", "http://");
                     }
-                    else {
-                        mpd = getManifestDocument(new URL(manifestUrl));
-                    }
-                    NodeList sets = (NodeList) xpath.compile("//urn:mpeg:dash:schema:mpd:2011:AdaptationSet").evaluate(mpd, XPathConstants.NODESET);
+                    try {
+                        XPath xpath = XPathFactory.newInstance().newXPath();
+                        if(isOffline) {
+                            mpd = getManifestDocument(new File(manifestUrl));
+                        }
+                        else {
+                            mpd = getManifestDocument(new URL(manifestUrl));
+                        }
+                        NodeList sets = (NodeList) xpath.compile("//urn:mpeg:dash:schema:mpd:2011:AdaptationSet").evaluate(mpd, XPathConstants.NODESET);
 
-                    if (sets.getLength() == 0) {
-                        if (onInvalid != null) onInvalid.run();
+                        if (sets.getLength() == 0) {
+                            if (onInvalid != null) onInvalid.run(mpd == null ? "MPD could not be reached." : mpd.toString());
+                        }
+                        else if (i < 3) {
+                            if (onValid != null) onValid.run();
+                        }
+                        else {
+                            if (onHttpRequired != null) onHttpRequired.run();
+                        }
+                        return;
                     }
-                    else {
-                        if (onValid != null) onValid.run();
+                    catch (Exception e) {
+                        e.printStackTrace();
                     }
-
-                    return;
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    if (recursive) {
-                        isValidManifest(manifestUrl.replace("https://", "http://"), isOffline, onHttpRequired, onInvalid, onHttpRequired, false);
-                    }
-                    else {
-                        onInvalid.run();
-                    }
+                }
+                if (onInvalid != null) {
+                    onInvalid.run(mpd == null ? "MPD could not be reached." : mpd.toString());
                 }
             }
         }).start();
