@@ -74,6 +74,49 @@ public class DashDetails {
         }).start();
     }
 
+    public static void getLicenseDetailsVemup(final String manifestUrl, final boolean isOffline, final ParameterizedRunnable<Pair<String, String>> onDetails) {
+        new RunnableThread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    XPath xpath = XPathFactory.newInstance().newXPath();
+                    Document mpd = null;
+                    if(isOffline) {
+                        mpd = getManifestDocument(new File(manifestUrl));
+                    }
+                    else {
+                        mpd = getManifestDocument(new URL(manifestUrl));
+                    }
+                    NodeList laurls = (NodeList) xpath.compile("//urn:mpeg:cenc:2013:pssh").evaluate(mpd, XPathConstants.NODESET);
+                    Log.d(TAG, "Node Count: " + laurls.getLength());
+                    String drmLicenseUrl = null;
+                    String drmInitializationBase64 = null;
+                    if (laurls.getLength() > 0) {
+                        Node laurl = laurls.item(0);
+                        drmInitializationBase64 = laurl.getTextContent();
+                        Log.d(TAG, "DRM Init Data: " + drmInitializationBase64);
+
+                        if (onDetails != null) {
+                            onDetails.run(new Pair<>(drmLicenseUrl, drmInitializationBase64));
+                        }
+                    }
+                    else {
+                        if (onDetails != null) {
+                            onDetails.run(null);
+                        }
+                    }
+                    return;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                if (onDetails != null) {
+                    onDetails.run(null);
+                }
+            }
+        }).start();
+    }
+
     public static void getLicenseDetails(final String manifestUrl, final boolean isOffline, final ParameterizedRunnable<Pair<String, String>> onDetails) {
         new RunnableThread(new Runnable() {
             @Override
