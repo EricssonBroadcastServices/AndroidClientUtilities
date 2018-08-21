@@ -3,6 +3,7 @@ package net.ericsson.emovs.utilities.drm;
 import android.util.Log;
 import android.util.Pair;
 
+import net.ericsson.emovs.utilities.security.CustomSSLSocketFactory;
 import net.ericsson.emovs.utilities.system.ParameterizedRunnable;
 import net.ericsson.emovs.utilities.system.RunnableThread;
 
@@ -16,6 +17,7 @@ import java.io.File;
 import java.net.URL;
 import java.util.UUID;
 
+import javax.net.ssl.HttpsURLConnection;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.xpath.XPath;
@@ -142,7 +144,19 @@ public class DashDetails {
 
     private static Document getManifestDocument(URL manifestUrl) throws Exception {
         File temp = File.createTempFile(UUID.randomUUID().toString(), ".mpd");
-        FileUtils.copyURLToFile(manifestUrl, temp);
+
+        if (manifestUrl.getProtocol().toLowerCase().equals("https")) {
+            // Create an https connection with SSL TLS 1.1 & 1.2 enabled
+            HttpsURLConnection.setDefaultSSLSocketFactory(
+                    CustomSSLSocketFactory.createSSLSocketFactory());
+            HttpsURLConnection connection =
+                    (HttpsURLConnection) manifestUrl.openConnection();
+
+            FileUtils.copyURLToFile(connection.getURL(), temp);
+        } else {
+            FileUtils.copyURLToFile(manifestUrl, temp);
+        }
+
         return getManifestDocument(temp);
     }
 }
