@@ -52,6 +52,10 @@ public class DeviceInfo implements Serializable {
         return width*width + height*height > diagonalTreshold*diagonalTreshold;
     }
 
+    public static String getDeviceModel() {
+        return Build.MODEL;
+    }
+
     public static DeviceInfo collect(Context context) {
         DeviceInfo info = new DeviceInfo();
         info.model = Build.MODEL;
