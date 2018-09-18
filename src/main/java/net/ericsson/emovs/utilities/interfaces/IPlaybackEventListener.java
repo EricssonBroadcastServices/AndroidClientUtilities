@@ -111,6 +111,17 @@ public interface IPlaybackEventListener {
     void onError(int errorCode, String errorMessage);
 
     /**
+     * Fired when an error occurs - by definition, an error is any event worthy of interest that causes the playback to stop without user's direct or indirect intervention.
+     * Gives error detailed information for further analysis.
+     *
+     * @param code
+     * @param message
+     * @param info
+     * @param details
+     */
+    void onErrorDetailed(int code, String message, String info, String details);
+
+    /**
      * Fired when a warning occurs - by definition, a warning is any event worthy of interest that does not cause the playback to stop
      *
      * @param warningCode

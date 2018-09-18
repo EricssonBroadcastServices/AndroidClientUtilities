@@ -91,6 +91,14 @@ public class AnalyticsPlaybackConnector {
         // Stub!
     }
 
+    public void onErrorDetailed(int code, String message, String info, String details) {
+        // Stub!
+    }
+
+    public void onErrorDetailed(String sessionId, int code, String message, String info, String details) {
+        // Stub!
+    }
+
     public void onProgramChange(EmpProgram newProgram) {
         // Stub!
     }
