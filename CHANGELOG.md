@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 2.0.92
+
+### Enhancements
+- **EMP-11757** Created class for listing internal player exception errors: InternalPlayerErrorCode.
+Adapted current interfaces to have new error callbacks with more information.
+
 ## 2.0.91
 
 ### Enhancements
