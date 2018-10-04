@@ -22,20 +22,19 @@ public class ServiceUtils {
     }
 
     public static boolean haveNetworkConnection(Context ctx) {
-        boolean haveConnectedWifi = false;
-        boolean haveConnectedMobile = false;
+
         try {
             ConnectivityManager cm = (ConnectivityManager) ctx.getSystemService(Context.CONNECTIVITY_SERVICE);
             @SuppressLint("MissingPermission") NetworkInfo[] netInfo = cm.getAllNetworkInfo();
             for (NetworkInfo ni : netInfo) {
                 if (ni.getTypeName().equalsIgnoreCase("WIFI"))
                     if (ni.isConnected())
-                        haveConnectedWifi = true;
+                        return true;
                 if (ni.getTypeName().equalsIgnoreCase("MOBILE"))
                     if (ni.isConnected())
-                        haveConnectedMobile = true;
+                        return true;
             }
-            return haveConnectedWifi || haveConnectedMobile;
+            return false;
         }
         catch(Exception e) {
             return false;
