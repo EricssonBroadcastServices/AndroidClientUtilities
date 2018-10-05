@@ -13,6 +13,7 @@ public class EMPRegistry {
     private static String apiUrl;
     private static String chromecastApiID;
     private static String locale;
+    private static boolean playbackThrottling = false;
 
     public static void bindApplicationContext(Context newContext) {
         context = newContext;
@@ -53,4 +54,12 @@ public class EMPRegistry {
     }
 
     public static String locale() { return locale; }
+
+    public static void enablePlaybackThrottling() {
+        playbackThrottling = true;
+    }
+
+    public static boolean playbackThrottlingEnabled() {
+        return playbackThrottling;
+    }
 }

@@ -20,6 +20,7 @@ public class Warning {
     public static final Warning PROGRAM_SERVICE_ENTITLEMENT_CHECK_NOT_POSSIBLE = new Warning(WarningCodes.PROGRAM_SERVICE_ENTITLEMENT_CHECK_NOT_POSSIBLE, "BACKEND_UNAVAILABLE");
     public static final Warning INVALID_START_TIME = new Warning(WarningCodes.INVALID_START_TIME, "INVALID_START_TIME");
     public static final Warning SEEK_TO_UNAVAILABLE_POSITION = new Warning(WarningCodes.SEEK_TO_UNAVAILABLE_POSITION, "SEEK_TO_UNAVAILABLE_POSITION");
+    public static final Warning PLAYBACK_START_BLOCKED = new Warning(WarningCodes.PLAYBACK_START_BLOCKED, "PLAYBACK_START_BLOCKED");
 
     final String mMessage;
     final int mCode;
