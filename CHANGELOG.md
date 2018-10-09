@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 2.0.93-1
+
+### Enhancements
+- **EMP-11796** Created new Warning and WarningCodes for playback throttling, which is disabled by default.
+Created method to enable playback throttling on EMPRegistry.
+
 ## 2.0.92
 
 ### Enhancements
