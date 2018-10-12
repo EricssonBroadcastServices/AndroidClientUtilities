@@ -1,8 +1,8 @@
 package net.ericsson.emovs.utilities.test;
 
-import net.ericsson.emovs.utilities.entitlements.IEntitlementCallback;
-
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 
 /**
@@ -46,5 +46,32 @@ public class TestUtils {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static Object callPrivateStaticMethod(Class<?> declaringClass, String methodName, Object ... arguments) throws Exception {
+        for(Method method : declaringClass.getDeclaredMethods()) {
+            boolean accessible = method.isAccessible();
+            try {
+                method.setAccessible(true);
+                if(Modifier.isStatic(method.getModifiers()) && method.getName().equals(methodName)) {
+                    try {
+                        return method.invoke(null, arguments);
+                    } catch (IllegalArgumentException e) {
+                        //Ignore. Might be an overloaded method with wrong parameters.
+                        continue;
+                    } catch (InvocationTargetException e) {
+                        Throwable targetException = e.getTargetException();
+                        if(targetException instanceof Exception) {
+                            throw (Exception) targetException;
+                        } else {
+                            throw e;
+                        }
+                    }
+                }
+            } finally {
+                method.setAccessible(accessible);
+            }
+        }
+        throw new NoSuchMethodException("Could not find static method with name "+methodName+" in "+declaringClass.getName()+" matching the specified parameters.");
     }
 }
