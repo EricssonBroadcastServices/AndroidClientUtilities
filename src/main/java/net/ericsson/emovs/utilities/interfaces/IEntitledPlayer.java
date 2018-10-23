@@ -22,6 +22,7 @@ public interface IEntitledPlayer extends IPlayer {
      */
     Entitlement getEntitlement();
 
+    String getRequestId();
     /**
      * Returns current playable
      */
