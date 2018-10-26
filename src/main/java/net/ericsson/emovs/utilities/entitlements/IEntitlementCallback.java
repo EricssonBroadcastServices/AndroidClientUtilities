@@ -15,7 +15,7 @@ package net.ericsson.emovs.utilities.entitlements;
 import net.ericsson.emovs.utilities.errors.Error;
 
 public interface IEntitlementCallback {
-    void onEntitlement(final Entitlement entitlement);
+    void onEntitlement(final Entitlement entitlement, String requestId);
     void onError(Error error);
     String getAssetId();
     String getChannelId();

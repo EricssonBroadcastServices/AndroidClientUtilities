@@ -2,9 +2,9 @@ package net.ericsson.emovs.utilities.entitlements;
 
 import android.util.Log;
 
+import net.ericsson.emovs.utilities.errors.Error;
 import net.ericsson.emovs.utilities.errors.ErrorCodes;
 import net.ericsson.emovs.utilities.errors.ErrorRunnable;
-import net.ericsson.emovs.utilities.errors.Error;
 import net.ericsson.emovs.utilities.system.RunnableThread;
 
 /**
@@ -27,8 +27,9 @@ public class EntitlementCallback implements IEntitlementCallback {
     }
 
     @Override
-    public void onEntitlement(final Entitlement entitlement) {
+    public void onEntitlement(final Entitlement entitlement, String requestId) {
         this.runnable.entitlement = entitlement;
+        this.runnable.requestId = requestId;
         new RunnableThread(this.runnable).start();
     }
 
